@@ -1,2 +1,3 @@
 #!/bin/bash
-ln -s ../configs/.vimrc ~/.vimrc
+mkdir ~/.vim &
+ln -rsf ../configs/.vimrc ~/.vimrc
