@@ -1,2 +1,2 @@
 #!/bin/bash
-ln -s ../images/wallpaper.jpg ~/wallpaper.jpg
+ln -rsf ../images/wallpaper.jpg ~/wallpaper.jpg

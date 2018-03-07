@@ -1,2 +1,2 @@
 #!/bin/bash
-ln -s ../configs/.xinitrc ~/.xinitrc
+ln -rsf ../configs/.xinitrc ~/.xinitrc

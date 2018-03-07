@@ -7,8 +7,9 @@ import json
 import difflib
 import sh
 import attr
-from ruamel import yaml
-
+import yaml
+#from ruamel import yaml
+from pathlib import Path
 
 
 class Dictionary():
@@ -138,7 +139,7 @@ class Menu():
     def launch(self, dictionary):
         keys = dictionary.keys()
         stdin = "\n".join(keys).encode('utf-8')
-        output = sh.dmenu("-i", _in=stdin).stdout
+        output = sh.dmenu("-i", "-f", "-fn", "Inconsolata-20", _in=stdin).stdout
         text = output.decode('utf-8').strip('\n')
         for prefix, url in self.top_prefixes.items():
             if text.startswith(prefix):
@@ -165,8 +166,8 @@ class Menu():
                 self.web("https://www.google.com/search?q="+text.replace('\\g ', ''))
 
 def main():
-    dictionary_filename = '/home/user/.superdmenu_dictionary.pickle'
-    home_folder = '/home/user/criteo/'
+    home_folder = str(Path.home())
+    dictionary_filename = home_folder+'/.superdmenu_dictionary.pickle'
     dictionary = Dictionary(dictionary_filename, 'bookmarks.yml', home_folder=home_folder)
     menu = Menu()
     menu.launch(dictionary)
