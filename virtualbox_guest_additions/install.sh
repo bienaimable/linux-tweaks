@@ -1,5 +1,8 @@
 #!/bin/bash
-
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
+   exit 1
+fi
 dpkg -l gcc;
 gcc_installed=$?
 dpkg -l make;
