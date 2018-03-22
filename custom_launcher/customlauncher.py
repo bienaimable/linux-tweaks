@@ -7,8 +7,9 @@ import json
 import difflib
 import sh
 import attr
-from ruamel import yaml
-
+import yaml
+#from ruamel import yaml
+from pathlib import Path
 
 
 class Dictionary():
@@ -71,17 +72,17 @@ class Dictionary():
     def update_folders(self):
         # Prepare the list of folders
         key = '\\f ' + self.home_folder
-        self.dictionary[key] = [["xfe", self.home_folder]]
+        self.dictionary[key] = [["st", "noice", self.home_folder]]
         walker_0 = os.walk(self.home_folder)
         (current_dir_0, subdirs_0, files_0) = next(walker_0)
         for subdir_0 in subdirs_0:
             key = '\\f ' + subdir_0
-            self.dictionary[key] = [["xfe", os.path.join(current_dir_0, subdir_0)]]
+            self.dictionary[key] = [["st", "noice", os.path.join(current_dir_0, subdir_0)]]
             walker_1 = os.walk(os.path.join(current_dir_0, subdir_0))
             (current_dir_1, subdirs_1, files_1) = next(walker_1)
             for subdir_1 in subdirs_1:
                 key = '\\f ' + subdir_1
-                self.dictionary[key] = [["xfe", os.path.join(current_dir_1, subdir_1)]]
+                self.dictionary[key] = [["st", "noice", os.path.join(current_dir_1, subdir_1)]]
 
     #def update_multiscreen(self):
     #    key = '\\m multiscreen'
@@ -138,7 +139,7 @@ class Menu():
     def launch(self, dictionary):
         keys = dictionary.keys()
         stdin = "\n".join(keys).encode('utf-8')
-        output = sh.dmenu("-i", _in=stdin).stdout
+        output = sh.dmenu("-i", "-f", "-fn", "Inconsolata-20", _in=stdin).stdout
         text = output.decode('utf-8').strip('\n')
         for prefix, url in self.top_prefixes.items():
             if text.startswith(prefix):
@@ -165,9 +166,10 @@ class Menu():
                 self.web("https://www.google.com/search?q="+text.replace('\\g ', ''))
 
 def main():
-    dictionary_filename = '/home/user/.superdmenu_dictionary.pickle'
-    home_folder = '/home/user/criteo/'
-    dictionary = Dictionary(dictionary_filename, 'bookmarks.yml', home_folder=home_folder)
+    home_folder = str(Path.home())
+    dictionary_filepath = home_folder+'/.customlauncher_dictionary.pickle'
+    bookmarks_filepath = home_folder+'/mybookmarks/bookmarks.yml'
+    dictionary = Dictionary(dictionary_filepath, bookmarks_filepath, home_folder=home_folder)
     menu = Menu()
     menu.launch(dictionary)
 
