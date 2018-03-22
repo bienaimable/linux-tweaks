@@ -4,9 +4,10 @@ xrandr --addmode Virtual1 2560x1600_60.00
 xrandr --output Virtual1 --mode 2560x1600_60.00
 while true; do
     BATT=$(acpi -b | sed 's/Battery 0: //' | sed 's/,[^,]*$//')
-    DATELOCAL=$(date +"%k:%M - %A %d %B %Y")
+    DATELOCAL=$(date +"%k:%M - %A %B %d")
     DATEISO=$(date -u +"%Y-%m-%dT%H:%M:%SZ")
-    xsetroot -name "`echo $DATELOCAL -- $DATEISO -- $BATT`"
+    ping -c 1 -W 1 8.8.8.8 2&> /dev/null; if [ $? != 0 ]; then CONNECTION='Disconnected'; else CONNECTION='Connected'; fi;
+    xsetroot -name "`echo $DATELOCAL -- $DATEISO -- $CONNECTION -- $BATT`"
     sleep 1
 done &
 feh --bg-fill ~/wallpaper.jpg
