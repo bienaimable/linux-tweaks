@@ -5,3 +5,5 @@ if [[ $EUID -ne 0 ]]; then
    exit 
 fi
 ln -rsf customlauncher.py /usr/bin/customlauncher
+chmod a+x customlauncher.py
+chmod a+x /usr/bin/customlauncher
