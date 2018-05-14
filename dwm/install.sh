@@ -12,14 +12,16 @@ if [[ $EUID -ne 0 ]]; then
    sleep 1
    exit 
 fi
-echo "Installing dwm..." 
+echo "Installing dependencies..." 
 sleep 1
 apt-get install -y dpkg-dev libx11-dev libxinerama-dev feh
-rm -r src
-git clone https://git.suckless.org/dwm src
-cd src
-cp config.def.h config.h
-patch config.h < ../config.h.patch
+echo "Installing dwm..." 
+sleep 1
+FOLDER=/tmp/dwm_src
+rm -r $FOLDER
+git clone https://git.suckless.org/dwm $FOLDER
+cp config.h $FOLDER
+cd $FOLDER
 make clean install
 echo "Choose default apps" 
 sleep 1
