@@ -12,4 +12,5 @@ if [[ $EUID -ne 0 ]]; then
 fi
 echo "Installing vim..." 
 sleep 1
-apt-get install vim-gtk3
+apt-get update
+apt-get install -y vim-gtk3
