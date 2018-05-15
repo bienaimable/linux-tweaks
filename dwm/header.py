@@ -1,13 +1,15 @@
 #!/usr/bin/python3
 import sh
 import time
-import sched, time
+import sched
+import os
 
 s = sched.scheduler(time.time, time.sleep)
 
 def render():
     try:
-        header = "{} -- {}, checked {}s ago -- {}".format(
+        header = "{} # {} -- {}, checked {}s ago -- {}".format(
+            git_reminder,
             datetime,
             connection,
             round(time.time() - connection_checked),
@@ -23,7 +25,7 @@ def update_connection():
     connection_checked = time.time()
     try:
         sh.ping('8.8.8.8', c=1, W=1)
-    except ErrorReturnCode:
+    except sh.ErrorReturnCode:
         connection = "Disconnected"
     else:
         connection = "Connected"
@@ -47,10 +49,24 @@ def update_datetime():
 
 def update_git_reminder():
     global git_reminder
-    walker_0 = os.walk('~/dev')
-    (current_dir_0, subdirs_0, files_0) = next(walker_0)
-    for subdir_0 in subdirs_0:
-        sh.git.status(_cwd=subdir_0)
+    folders = ['~/dev', '~/linux-tweaks']
+    for folder in folders:
+        folder = os.path.expanduser(folder)
+        walker_0 = os.walk(folder)
+        (current_dir_0, subdirs_0, files_0) = next(walker_0)
+        for subdir_0 in subdirs_0:
+            try:
+                status = sh.git.status(_cwd=os.path.join(folder, subdir_0))
+            except sh.ErrorReturnCode:
+                git_reminder = "{} not saved".format(subdir_0)
+                break
+            if "Changes not staged" in status \
+            or "Untracked files" in status \
+            or "Your branch is ahead" in status:
+                git_reminder = "{} not saved".format(subdir_0)
+                break
+            else:
+                git_reminder = ""
     render()
     s.enter(30, 1, update_datetime)
     
