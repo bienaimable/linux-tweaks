@@ -55,15 +55,17 @@ def update_git_reminder():
         walker_0 = os.walk(folder)
         (current_dir_0, subdirs_0, files_0) = next(walker_0)
         for subdir_0 in subdirs_0:
+            if subdir_0.startswith('.'): continue
+            workdir = os.path.join(folder, subdir_0)
             try:
-                status = sh.git.status(_cwd=os.path.join(folder, subdir_0))
+                status = sh.git.status(_cwd=workdir)
             except sh.ErrorReturnCode:
-                git_reminder = "{} not saved".format(subdir_0)
+                git_reminder = "{} not saved".format(workdir)
                 break
             if "Changes not staged" in status \
             or "Untracked files" in status \
             or "Your branch is ahead" in status:
-                git_reminder = "{} not saved".format(subdir_0)
+                git_reminder = "{} not saved".format(workdir)
                 break
             else:
                 git_reminder = ""
