@@ -70,7 +70,7 @@ def update_git_reminder():
             else:
                 git_reminder = ""
     render()
-    s.enter(30, 1, update_datetime)
+    s.enter(15, 1, update_git_reminder)
     
 
 if __name__ == '__main__':
