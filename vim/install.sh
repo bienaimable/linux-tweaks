@@ -13,4 +13,4 @@ fi
 echo "Installing vim..." 
 sleep 1
 apt-get update
-apt-get install -y vim-gtk3
+apt-get install -y vim-gtk3 fonts-inconsolata

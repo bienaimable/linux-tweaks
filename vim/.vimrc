@@ -90,3 +90,4 @@ set clipboard=unnamedplus
 nnoremap <space> za
 vnoremap <space> zf
 nnoremap <buffer> <F9> :cd /tmp<cr>:let foo =strftime('%T')<cr>:exec 'w! '.foo<cr>:exec '!chmod u+x '.foo<cr>:exec '!./'.foo<cr>
+autocmd BufNewFile,BufRead *.ts   set syntax=javascript
