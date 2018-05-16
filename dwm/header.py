@@ -38,13 +38,13 @@ def update_battery():
     battery = battery.rsplit(',', 1)[0]
     battery = battery.strip()
     render()
-    s.enter(0.1, 1, update_battery)
+    s.enter(5, 1, update_battery)
 
 def update_datetime():
     global datetime
     datetime = time.strftime("%Y-%m-%d %H:%M, %A")
     render()
-    s.enter(0.1, 1, update_datetime)
+    s.enter(2, 1, update_datetime)
 
 def update_git_reminder():
     global git_reminder
@@ -69,7 +69,7 @@ def update_git_reminder():
                 git_reminder = "{} not saved".format(workdir)
                 break
     render()
-    s.enter(5, 1, update_git_reminder)
+    s.enter(30, 1, update_git_reminder)
     
 
 if __name__ == '__main__':
