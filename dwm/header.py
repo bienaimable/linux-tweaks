@@ -14,7 +14,6 @@ def render():
             connection,
             round(time.time() - connection_checked),
             battery)
-        print('Refreshing header...')
         sh.xsetroot('-name', header)
     except NameError:
         pass
@@ -48,7 +47,9 @@ def update_datetime():
     s.enter(0.1, 1, update_datetime)
 
 def update_git_reminder():
+    print('Refreshing header...')
     global git_reminder
+    git_reminder = ""
     folders = ['~/dev', '~/linux-tweaks']
     for folder in folders:
         folder = os.path.expanduser(folder)
@@ -63,14 +64,13 @@ def update_git_reminder():
                 git_reminder = "{} not saved".format(workdir)
                 break
             if "Changes not staged" in status \
+            or "Changes to be committed" in status \
             or "Untracked files" in status \
             or "Your branch is ahead" in status:
                 git_reminder = "{} not saved".format(workdir)
                 break
-            else:
-                git_reminder = ""
     render()
-    s.enter(15, 1, update_git_reminder)
+    s.enter(5, 1, update_git_reminder)
     
 
 if __name__ == '__main__':
