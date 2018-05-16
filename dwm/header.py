@@ -47,7 +47,6 @@ def update_datetime():
     s.enter(0.1, 1, update_datetime)
 
 def update_git_reminder():
-    print('Refreshing header...')
     global git_reminder
     git_reminder = ""
     folders = ['~/dev', '~/linux-tweaks']
