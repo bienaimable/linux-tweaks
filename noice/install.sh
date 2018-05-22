@@ -1,4 +1,9 @@
 #!/bin/bash
+if [[ $EUID -ne 0 ]]; then
+   echo "This script must be run as root" 
+   sleep 1
+   exit 
+fi
 apt-get update
 apt-get install -y libncurses5-dev
 rm -rf /opt/noice

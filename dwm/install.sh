@@ -8,6 +8,9 @@ if [[ $EUID -ne 0 ]]; then
    echo "Setting up wallpaper" 
    sleep 1
    ln -rsf wallpaper.jpg ~/wallpaper.jpg
+   echo "Creating dev folder" 
+   mkdir ~/dev
+   sleep 1
    echo "Make sure to also run this script as root" 
    sleep 1
    exit 
