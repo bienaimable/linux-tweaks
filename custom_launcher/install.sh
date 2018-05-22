@@ -10,7 +10,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 apt-get update
 apt-get install -y python3-pip chromium-browser suckless-tools
-pip3 install sh
+pip3 install sh attrs pyyaml
 ln -rsf customlauncher.py /usr/bin/customlauncher
 chmod a+x customlauncher.py
 chmod a+x /usr/bin/customlauncher
