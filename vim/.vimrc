@@ -53,8 +53,8 @@ syn on
 "map <F5> :! C:\Python34\Lib\idlelib\idle.pyw %<CR>
 "
 "set directory=.,$TEMP
-set backupdir=~/.vim,.
-set directory=~/.vim,.
+set backupdir=~/.vim,/tmp
+set directory=~/.vim,/tmp
 
 set encoding=utf-8
 
