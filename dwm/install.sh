@@ -17,7 +17,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 echo "Installing dependencies..." 
 sleep 1
-apt-get install -y dpkg-dev libx11-dev libxinerama-dev feh libfreetype6-dev libxft2-dev xinit acpi x11-xkb-utils
+apt-get install -y dpkg-dev libx11-dev libxinerama-dev feh libfreetype6-dev libxft2-dev xinit acpi x11-xkb-utils suckless-tools
 echo "Installing dwm..." 
 sleep 1
 FOLDER=/tmp/dwm_src
