@@ -9,7 +9,7 @@ if [[ $EUID -ne 0 ]]; then
    sleep 1
    ln -rsf wallpaper.jpg ~/wallpaper.jpg
    echo "Creating dev folder" 
-   mkdir ~/dev
+   mkdir -p ~/dev
    sleep 1
    echo "Make sure to also run this script as root" 
    sleep 1
@@ -21,7 +21,7 @@ apt-get install -y dpkg-dev libx11-dev libxinerama-dev feh libfreetype6-dev libx
 echo "Installing dwm..." 
 sleep 1
 FOLDER=/tmp/dwm_src
-rm -r $FOLDER
+rm -rf $FOLDER
 git clone https://git.suckless.org/dwm $FOLDER
 cp config.h $FOLDER
 cd $FOLDER
