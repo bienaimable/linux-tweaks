@@ -8,12 +8,9 @@ s = sched.scheduler(time.time, time.sleep)
 
 def render():
     try:
-        header = "{} # {} -- {}, checked {}s ago -- {}".format(
-            git_reminder,
-            datetime,
-            connection,
-            round(time.time() - connection_checked),
-            battery)
+        last_checked = round((time.time() - connection_checked +1)/5)
+        dots = "."*(last_checked)+" "*(3-last_checked)
+        header = f"[{git_reminder}] [{connection}{dots}] [{battery}] {datetime}"
         sh.xsetroot('-name', header)
     except NameError:
         pass
@@ -28,8 +25,7 @@ def update_connection():
         connection = "Disconnected"
     else:
         connection = "Connected"
-    render()
-    s.enter(9, 1, update_connection)
+    s.enter(15, 1, update_connection)
 
 def update_battery():
     global battery
@@ -37,19 +33,17 @@ def update_battery():
     battery = battery.split(':', 1)[1]
     battery = battery.rsplit(',', 1)[0]
     battery = battery.strip()
-    render()
     s.enter(5, 1, update_battery)
 
 def update_datetime():
     global datetime
-    datetime = time.strftime("%Y-%m-%d %H:%M, %A")
-    render()
+    datetime = time.strftime("[%A, %Y-%m-%d] [%H:%M] ")
     s.enter(2, 1, update_datetime)
 
 def update_git_reminder():
     global git_reminder
     git_reminder = ""
-    folders = ['~/dev', '~/linux-tweaks']
+    folders = ['~/dev', '~/linux-tweaks', '~/mybookmarks']
     for folder in folders:
         folder = os.path.expanduser(folder)
         walker_0 = os.walk(folder)
@@ -68,13 +62,17 @@ def update_git_reminder():
             or "Your branch is ahead" in status:
                 git_reminder = "{} not saved".format(workdir)
                 break
-    render()
     s.enter(30, 1, update_git_reminder)
     
+def loop():
+    render()
+    s.enter(2, 1, loop)
+
 
 if __name__ == '__main__':
     update_connection()
     update_battery()
     update_datetime()
     update_git_reminder()
+    loop()
     s.run()
