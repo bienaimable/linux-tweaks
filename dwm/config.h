@@ -1,5 +1,5 @@
 /* See LICENSE file for copyright and license details. */
-
+#include <X11/XF86keysym.h>
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -61,9 +61,19 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *customlauncher[]  = { "customlauncher", NULL };
 static const char *slock[]  = { "slock", NULL };
+static const char *brightnessup[]  = { "brightness", "up", NULL };
+static const char *brightnessdown[]  = { "brightness", "down", NULL };
+static const char *audiovolumeup[]  = { "amixer", "set", "Master", "10%+", NULL };
+static const char *audiovolumedown[]  = { "amixer", "set", "Master", "10%-", NULL };
+static const char *audiovolumemute[]  = { "amixer", "set", "Master", "0%", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
+	{ False,      XF86XK_MonBrightnessUp,      spawn,          {.v = brightnessup } },
+	{ False,      XF86XK_MonBrightnessDown,    spawn,          {.v = brightnessdown } },
+	{ False,      XF86XK_AudioRaiseVolume,     spawn,          {.v = audiovolumeup } },
+	{ False,      XF86XK_AudioLowerVolume,     spawn,          {.v = audiovolumedown } },
+	{ False,      XF86XK_AudioMute,            spawn,          {.v = audiovolumemute } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = customlauncher } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },

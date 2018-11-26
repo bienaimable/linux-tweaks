@@ -77,7 +77,7 @@ set autoindent
 set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 
 if has('gui_running')
-  set guifont=Inconsolata\ Medium\ 22
+  set guifont=Inconsolata\ Medium\ 16
   colorscheme desert
 endif
 

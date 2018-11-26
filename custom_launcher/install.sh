@@ -3,7 +3,7 @@ echo "This script must be run both as root and as a regular user"
 sleep 1
 if [[ $EUID -ne 0 ]]; then
    cd
-   git clone http://gitlab.criteois.com/f.pillot/mybookmarks
+   git clone http://gitlab.cinnalemon.com/bienaimable/mybookmarks
    echo "Make sure to run this script as root" 
    sleep 1
    exit 
