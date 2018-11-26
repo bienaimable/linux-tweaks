@@ -10,7 +10,7 @@ def render():
     try:
         last_checked = round((time.time() - connection_checked +1)/5)
         dots = "."*(last_checked)+" "*(3-last_checked)
-        header = f"[{git_reminder}] [{connection}{dots}] [{battery}] {datetime}"
+        header = f"{git_reminder} [{connection}{dots}] [{battery}] {datetime}"
         sh.xsetroot('-name', header)
     except NameError:
         pass
@@ -54,13 +54,13 @@ def update_git_reminder():
             try:
                 status = sh.git.status(_cwd=workdir)
             except sh.ErrorReturnCode:
-                git_reminder = "{} not saved".format(workdir)
+                git_reminder = "[{} not saved]".format(workdir)
                 break
             if "Changes not staged" in status \
             or "Changes to be committed" in status \
             or "Untracked files" in status \
             or "Your branch is ahead" in status:
-                git_reminder = "{} not saved".format(workdir)
+                git_reminder = "[{} not saved]".format(workdir)
                 break
     s.enter(30, 1, update_git_reminder)
     
