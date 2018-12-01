@@ -66,6 +66,7 @@ static const char *brightnessdown[]  = { "brightness", "down", NULL };
 static const char *audiovolumeup[]  = { "amixer", "set", "Master", "10%+", NULL };
 static const char *audiovolumedown[]  = { "amixer", "set", "Master", "10%-", NULL };
 static const char *audiovolumemute[]  = { "amixer", "set", "Master", "0%", NULL };
+static const char *printscreen[]  = { "printscreen", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -74,6 +75,8 @@ static Key keys[] = {
 	{ False,      XF86XK_AudioRaiseVolume,     spawn,          {.v = audiovolumeup } },
 	{ False,      XF86XK_AudioLowerVolume,     spawn,          {.v = audiovolumedown } },
 	{ False,      XF86XK_AudioMute,            spawn,          {.v = audiovolumemute } },
+	{ False,      XF86XK_Search,               spawn,          {.v = customlauncher } },
+	{ False,                        XK_Print,  spawn,          {.v = printscreen } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = customlauncher } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
