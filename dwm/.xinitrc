@@ -22,4 +22,4 @@ xrandr --output Virtual1 --mode 2560x1600_60.00
 ~/linux-tweaks/dwm/header.py &
 feh --bg-fill ~/wallpaper.jpg
 setxkbmap -option caps:escape
-exec /usr/local/bin/dwm
+exec /usr/local/bin/dwm 2> ~/.dwm.log
