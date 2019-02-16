@@ -1,0 +1,20 @@
+--- config.def.h	2019-02-16 21:24:20.605039839 +0100
++++ high_res_config.h	2019-02-16 17:35:08.712576567 +0100
+@@ -5,7 +5,7 @@
+  *
+  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
+  */
+-static char *font = "Liberation Mono:pixelsize=12:antialias=true:autohint=true";
++static char *font = "Liberation Mono:pixelsize=18:antialias=true:autohint=true";
+ static int borderpx = 2;
+ 
+ /*
+@@ -63,7 +63,7 @@
+ static int bellvolume = 0;
+ 
+ /* default TERM value */
+-char *termname = "st-256color";
++char *termname = "xterm";
+ 
+ /*
+  * spaces per tab

@@ -12,17 +12,22 @@ apt-get install -y fontconfig libfreetype6-dev libxft2-dev zsh
 FOLDER="/tmp/stterm"
 rm -r $FOLDER
 git clone git://git.suckless.org/st $FOLDER
-IN=$(xdpyinfo | grep dimensions | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/')
-arrIN=(${IN//x/ })
-if [[ $arrIN < 1400 ]] ; 
-then 
-    echo Using low resolution configuration;
-    cp low_res_config.h $FOLDER/config.h
-else
-    echo Using high resolution configuration;
-    cp high_res_config.h $FOLDER/config.h
-fi;
+#IN=$(xdpyinfo | grep dimensions | sed -r 's/^[^0-9]*([0-9]+x[0-9]+).*$/\1/')
+#arrIN=(${IN//x/ })
+#if [[ $arrIN < 1400 ]] ; 
+#then 
+#    echo Using low resolution configuration;
+#    cp low_res_config.h $FOLDER/config.h
+#else
+#    echo Using high resolution configuration;
+#    cp high_res_config.h $FOLDER/config.h
+#fi;
+cp st-scrollback-20190122-3be4cf1.diff $FOLDER/
+cp config.patch $FOLDER/
 cd $FOLDER
+patch < st-scrollback-20190122-3be4cf1.diff
+patch < config.patch
+cp config.def.h config.h
 make clean install
 cat >/usr/bin/st_background <<EOL
 #!/bin/bash
