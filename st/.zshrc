@@ -11,6 +11,8 @@ zstyle :compinstall filename '/home/bienaimable/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+export LESSOPEN="| /usr/bin/lesspipe %s";
+export LESSCLOSE="/usr/bin/lesspipe %s %s";
 countdown() {
     MIN=$1;for ((i=MIN*60;i>=0;i--));do echo -ne "\r$(date -d"0+$i sec" +%H:%M:%S)";sleep 1;done
 }
