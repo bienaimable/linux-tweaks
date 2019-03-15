@@ -21,6 +21,8 @@ apt-get install -y dpkg-dev libx11-dev libxinerama-dev feh libfreetype6-dev libx
 echo "Linking helper scripts (brightness, printscreen...)"
 ln -rsf brightness.sh /usr/bin/brightness
 ln -rsf printscreen.sh /usr/bin/printscreen
+ln -rsf sleep_and_lock.sh /usr/bin/sleep_and_lock
+chmod a+x /usr/bin/sleep_and_lock
 chmod a+x brightness.sh
 chmod a+x /usr/bin/brightness
 echo "Installing dwm..." 

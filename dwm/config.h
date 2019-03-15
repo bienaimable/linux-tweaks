@@ -15,8 +15,7 @@ static const char col_cyan[]        = "#005577";
 static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
-};
+	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  }, };
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
@@ -67,6 +66,7 @@ static const char *audiovolumeup[]  = { "amixer", "set", "Master", "10%+", NULL 
 static const char *audiovolumedown[]  = { "amixer", "set", "Master", "10%-", NULL };
 static const char *audiovolumemute[]  = { "amixer", "set", "Master", "0%", NULL };
 static const char *printscreen[]  = { "printscreen", NULL };
+static const char *sleep_and_lock[]  = { "sleep_and_lock", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -77,6 +77,7 @@ static Key keys[] = {
 	{ False,      XF86XK_AudioMute,            spawn,          {.v = audiovolumemute } },
 	{ False,      XF86XK_Search,               spawn,          {.v = customlauncher } },
 	{ False,                        XK_Print,  spawn,          {.v = printscreen } },
+	{ MODKEY,                       XK_z,      spawn,          {.v = sleep_and_lock } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = customlauncher } },
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
