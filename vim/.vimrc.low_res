@@ -89,7 +89,7 @@ set smartcase
 set clipboard=unnamedplus
 nnoremap <space> za
 vnoremap <space> zf
-nnoremap <buffer> <F8> :cd /tmp<cr>:let foo =strftime('%T')<cr>:exec 'w! '.foo<cr>:exec '!chmod u+x '.foo<cr>:exec 'read !./'.foo<cr>
+nnoremap <buffer> <F8> :cd /tmp<cr>:let foo =strftime('%T')<cr>:exec 'w! '.foo<cr>:exec '!chmod u+x '.foo<cr>:exec 'read !./'.foo<cr><cr>
 nnoremap <buffer> <F9> :cd /tmp<cr>:let foo =strftime('%T')<cr>:exec 'w! '.foo<cr>:exec '!chmod u+x '.foo<cr>:exec '!./'.foo<cr>
 autocmd BufNewFile,BufRead *.ts   set syntax=javascript
 autocmd BufNewFile,BufRead nginx.conf   set syntax=javascript
