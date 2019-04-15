@@ -79,10 +79,13 @@ class Dictionary():
             key = '\\f ' + subdir_0
             self.dictionary[key] = [["st", "noice", os.path.join(current_dir_0, subdir_0)]]
             walker_1 = os.walk(os.path.join(current_dir_0, subdir_0))
-            (current_dir_1, subdirs_1, files_1) = next(walker_1)
-            for subdir_1 in subdirs_1:
-                key = '\\f ' + subdir_1
-                self.dictionary[key] = [["st", "noice", os.path.join(current_dir_1, subdir_1)]]
+            try:
+                (current_dir_1, subdirs_1, files_1) = next(walker_1)
+                for subdir_1 in subdirs_1:
+                    key = '\\f ' + subdir_1
+                    self.dictionary[key] = [["st", "noice", os.path.join(current_dir_1, subdir_1)]]
+            except StopIteration:
+                pass
 
     #def update_multiscreen(self):
     #    key = '\\m multiscreen'
