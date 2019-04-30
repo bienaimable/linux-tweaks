@@ -22,10 +22,10 @@ git clone git://git.suckless.org/st $FOLDER
 #    echo Using high resolution configuration;
 #    cp high_res_config.h $FOLDER/config.h
 #fi;
-cp st-scrollback-20190122-3be4cf1.diff $FOLDER/
+cp st-scrollback-20190331-21367a0.diff $FOLDER/
 cp config.patch $FOLDER/
 cd $FOLDER
-patch < st-scrollback-20190122-3be4cf1.diff
+patch < st-scrollback-20190331-21367a0.diff
 patch < config.patch
 cp config.def.h config.h
 make clean install

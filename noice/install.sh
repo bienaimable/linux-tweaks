@@ -9,10 +9,10 @@ apt-get install -y libncurses5-dev
 apt-get install -y mupdf mpv sxiv unp
 rm -rf /opt/noice
 git clone git://git.2f30.org/noice.git /opt/noice
-cp config.patch /opt/noice/
+cp config.def.h /opt/noice/
 cd /opt/noice
 cp config.def.h config.h
-patch < config.patch
+#patch < config.patch
 make
 ln -rsf ./noice /usr/bin/
 #cat >/usr/bin/mimeopenask <<EOL
