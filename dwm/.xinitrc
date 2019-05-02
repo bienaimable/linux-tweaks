@@ -22,4 +22,5 @@ xrandr --output Virtual1 --mode 2560x1600_60.00
 ~/linux-tweaks/dwm/header.py &
 feh --bg-fill ~/wallpaper.jpg
 setxkbmap -option caps:escape
+export _JAVA_AWT_WM_NONREPARENTING=1 # To fix Pycharm and Android Studio blank screen in DWM
 exec /usr/local/bin/dwm 2> ~/.dwm.log
