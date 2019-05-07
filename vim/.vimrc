@@ -100,8 +100,12 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'davidhalter/jedi-vim'
 Plug 'airblade/vim-rooter'
+Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
+Plug 'vim-syntastic/syntastic'
+Plug 'nanotech/jellybeans.vim'
+Plug 'vim-airline/vim-airline-themes'
 
 " Initialize plugin system
 call plug#end()
@@ -121,3 +125,18 @@ set wildmenu
 " Use * to make it fuzzy
 "
 " :b lets you autocomplete any open buffer
+
+" Recommended settings for Syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_checkers = ['flake8']
+
+syntax enable
+colorscheme jellybeans
