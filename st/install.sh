@@ -23,9 +23,13 @@ git clone git://git.suckless.org/st $FOLDER
 #    cp high_res_config.h $FOLDER/config.h
 #fi;
 cp st-scrollback-20190331-21367a0.diff $FOLDER/
+cp st-scrollback-mouse-0.8.diff $FOLDER/
+cp st-scrollback-mouse-altscreen-20190131-e23acb9.diff $FOLDER/
 cp config.patch $FOLDER/
 cd $FOLDER
 patch < st-scrollback-20190331-21367a0.diff
+patch < st-scrollback-mouse-0.8.diff
+patch < st-scrollback-mouse-altscreen-20190131-e23acb9.diff
 patch < config.patch
 cp config.def.h config.h
 make clean install
