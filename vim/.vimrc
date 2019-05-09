@@ -112,7 +112,6 @@ call plug#end()
 
 " vim-jedi settings
 let mapleader = ","
-let g:jedi#use_tabs_not_buffers = 1
 
 " Search down into subfolders
 set path+=**
@@ -140,3 +139,11 @@ let g:syntastic_python_checkers = ['flake8']
 
 syntax enable
 colorscheme jellybeans
+
+" Enable the list of buffers
+let g:airline#extensions#tabline#enabled = 1
+" Show just the filename
+let g:airline#extensions#tabline#fnamemod = ':t'
+
+" Hide toolbar in gvim
+set guioptions -=T
