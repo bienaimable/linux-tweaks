@@ -1,7 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 #include <X11/XF86keysym.h>
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -67,6 +67,8 @@ static const char *audiovolumedown[]  = { "amixer", "set", "Master", "10%-", NUL
 static const char *audiovolumemute[]  = { "amixer", "set", "Master", "0%", NULL };
 static const char *printscreen[]  = { "printscreen", NULL };
 static const char *sleep_and_lock[]  = { "sleep_and_lock", NULL };
+static const char *keyboard_us[]  = { "setxkbmap", "us", NULL };
+static const char *keyboard_fr[]  = { "setxkbmap", "fr", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -77,6 +79,8 @@ static Key keys[] = {
 	{ False,      XF86XK_AudioMute,            spawn,          {.v = audiovolumemute } },
 	{ False,      XF86XK_Search,               spawn,          {.v = customlauncher } },
 	{ False,                        XK_Print,  spawn,          {.v = printscreen } },
+	{ MODKEY,                       XK_o,      spawn,          {.v = keyboard_fr } },
+	{ MODKEY,                       XK_u,      spawn,          {.v = keyboard_us } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = sleep_and_lock } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = customlauncher } },
@@ -103,6 +107,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
 	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
 	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
+/* french keyboard
     TAGKEYS(                        0x26,                      0)
 	TAGKEYS(                        0xe9,                      1)
 	TAGKEYS(                        0x22,                      2)
@@ -112,6 +117,16 @@ static Key keys[] = {
 	TAGKEYS(                        0xe8,                      6)
 	TAGKEYS(                        0x5f,                      7)
 	TAGKEYS(                        0xe7,                      8)
+ */
+    TAGKEYS(                        XK_1,                      0)
+	TAGKEYS(                        XK_2,                      1)
+	TAGKEYS(                        XK_3,                      2)
+	TAGKEYS(                        XK_4,                      3)
+	TAGKEYS(                        XK_5,                      4)
+	TAGKEYS(                        XK_6,                      5)
+	TAGKEYS(                        XK_7,                      6)
+	TAGKEYS(                        XK_8,                      7)
+	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
 };
 

@@ -97,6 +97,7 @@ struct key bindings[] = {
 	/* Run command with argument */
 	//{ 'e',            SEL_RUNARG, "vi", "EDITOR" },
  	{ 'e',            SEL_RUNARG, "gvim", "EDITOR" },
-	{ 'p',            SEL_RUNARG, "less", "PAGER" },
+	//{ 'p',            SEL_RUNARG, "less", "PAGER" },
  	{ 'o',            SEL_RUNARG, "mimeopenbg" },
+ 	{ 'p',            SEL_RUNARG, "treeless" },
 };

@@ -35,4 +35,9 @@ cat >/usr/bin/smartless <<EOL
 lesspipe "\$1" | less
 EOL
 chmod a+x /usr/bin/smartless
+cat >/usr/bin/treeless <<EOL
+#!/bin/sh
+tree "\$1" | less
+EOL
+chmod a+x /usr/bin/treeless
 echo "h quit" |lesskey - 

@@ -19,3 +19,5 @@ countdown() {
 beep() {
     paplay /usr/share/sounds/freedesktop/stereo/complete.oga
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
