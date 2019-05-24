@@ -15,6 +15,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-surround'
 Plug 'vim-syntastic/syntastic'
 Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline-themes'
@@ -84,7 +85,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_python_checkers = ['flake8', 'mypy']
+let g:syntastic_python_checkers = ['flake8']
 
 syntax enable
 "colorscheme desert
@@ -100,4 +101,5 @@ set guioptions -=T
 map <leader>t :!nosetests %<CR>
 
 " Deactivate ex mode shortcut
-:nnoremap Q <Nop>
+nnoremap Q <Nop>
+nmap <leader>b oimport pdb; pdb.set_trace()<ESC>
