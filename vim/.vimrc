@@ -51,8 +51,6 @@ if has('gui_running')
 endif
 
 set hlsearch
-nmap <C-P> :bp<CR>
-nmap <C-N> :bn<CR>
 set ignorecase
 set smartcase
 set clipboard=unnamedplus
@@ -91,15 +89,41 @@ syntax enable
 "colorscheme desert
 colorscheme jellybeans
 
-" Enable the list of buffers
-let g:airline#extensions#tabline#enabled = 1
-" Show just the filename
-let g:airline#extensions#tabline#fnamemod = ':t'
+"" Enable the list of buffers
+"let g:airline#extensions#tabline#enabled = 1
+"" Show just the filename
+"let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Hide toolbar in gvim
 set guioptions -=T
-map <leader>t :!nosetests %<CR>
 
 " Deactivate ex mode shortcut
 nnoremap Q <Nop>
-nmap <leader>b oimport pdb; pdb.set_trace()<ESC>
+
+" Dash separated is same word
+set iskeyword+=-
+
+" Python debugging
+au BufNewFile,BufRead *.py map <leader>t :!nosetests %<CR>
+au BufNewFile,BufRead *.py nmap <leader>b oimport pdb; pdb.set_trace()<ESC>
+
+au BufNewFile,BufRead *.py set
+    \ tabstop=4
+    \ softtabstop=4
+    \ shiftwidth=4
+    \ fileformat=unix
+
+au BufNewFile,BufRead *.js, *.html, *.css set
+    \ tabstop=2
+    \ softtabstop=2
+    \ shiftwidth=2
+
+highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
+
+
+nmap <C-B> :CtrlPBuffer<CR>

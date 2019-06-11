@@ -15,6 +15,7 @@ cp config.def.h config.h
 #patch < config.patch
 make
 ln -rsf ./noice /usr/bin/
+echo "h quit" |lesskey -
 #cat >/usr/bin/mimeopenask <<EOL
 ##!/bin/sh
 #mimeopen -a "\$1"
@@ -40,4 +41,8 @@ cat >/usr/bin/treeless <<EOL
 tree "\$1" | less
 EOL
 chmod a+x /usr/bin/treeless
-echo "h quit" |lesskey - 
+cat >/usr/bin/gvimremote <<EOL
+#!/bin/sh
+gvim --servername MAIN --remote-silent "\$1"
+EOL
+chmod a+x /usr/bin/gvimremote
