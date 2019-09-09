@@ -11,6 +11,10 @@ if [[ $EUID -ne 0 ]]; then
    echo "Creating dev folder" 
    mkdir -p ~/dev
    sleep 1
+   echo "Linking Downloads to tmp" 
+   rm ~/Downloads
+   ln -rsf /tmp/ ~/Downloads
+   sleep 1
    echo "Make sure to also run this script as root" 
    sleep 1
    exit 

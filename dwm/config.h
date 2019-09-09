@@ -5,8 +5,8 @@ static const unsigned int borderpx  = 3;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
-static const char *fonts[]          = { "monospace:size=12" };
-static const char dmenufont[]       = "monospace:size=12";
+static const char *fonts[]          = { "monospace:size=16" };
+static const char dmenufont[]       = "monospace:size=16";
 static const char col_gray1[]       = "#222222";
 static const char col_gray2[]       = "#444444";
 static const char col_gray3[]       = "#bbbbbb";
@@ -43,8 +43,11 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 };
 
-/* key definitions */
+/* key definitions for Alt/Option key*/
+#define MODKEY Mod1Mask
+/* key definitions for Windows/Super/Command key
 #define MODKEY Mod4Mask
+*/
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -78,7 +81,7 @@ static Key keys[] = {
 	{ False,      XF86XK_AudioLowerVolume,     spawn,          {.v = audiovolumedown } },
 	{ False,      XF86XK_AudioMute,            spawn,          {.v = audiovolumemute } },
 	{ False,      XF86XK_Search,               spawn,          {.v = customlauncher } },
-	{ False,                        XK_Print,  spawn,          {.v = printscreen } },
+	{ MODKEY,                       XK_c,      spawn,          {.v = printscreen } },
 	{ MODKEY,                       XK_o,      spawn,          {.v = keyboard_fr } },
 	{ MODKEY,                       XK_u,      spawn,          {.v = keyboard_us } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = sleep_and_lock } },

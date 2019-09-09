@@ -142,7 +142,7 @@ class Menu():
     def launch(self, dictionary):
         keys = dictionary.keys()
         stdin = "\n".join(keys).encode('utf-8')
-        output = sh.dmenu("-i", "-f", "-fn", "Inconsolata-14", _in=stdin).stdout
+        output = sh.dmenu("-i", "-f", "-fn", "Inconsolata-16", _in=stdin).stdout
         text = output.decode('utf-8').strip('\n')
         for prefix, url in self.top_prefixes.items():
             if text.startswith(prefix):

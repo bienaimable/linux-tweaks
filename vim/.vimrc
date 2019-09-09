@@ -47,7 +47,7 @@ set softtabstop=4
 set autoindent
 
 if has('gui_running')
-  set guifont=Inconsolata\ Medium\ 13
+  set guifont=Inconsolata\ Medium\ 20
 endif
 
 set hlsearch
@@ -113,7 +113,17 @@ au BufNewFile,BufRead *.py set
     \ shiftwidth=4
     \ fileformat=unix
 
-au BufNewFile,BufRead *.js, *.html, *.css set
+au BufNewFile,BufRead *.js set
+    \ tabstop=2
+    \ softtabstop=2
+    \ shiftwidth=2
+
+au BufNewFile,BufRead *.html set
+    \ tabstop=2
+    \ softtabstop=2
+    \ shiftwidth=2
+
+au BufNewFile,BufRead *.css set
     \ tabstop=2
     \ softtabstop=2
     \ shiftwidth=2
@@ -127,3 +137,4 @@ autocmd BufWinLeave * call clearmatches()
 
 
 nmap <C-B> :CtrlPBuffer<CR>
+set tags=tags;/
