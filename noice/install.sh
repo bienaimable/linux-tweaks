@@ -6,13 +6,12 @@ if [[ $EUID -ne 0 ]]; then
 fi
 apt-get update
 apt-get install -y libncurses5-dev
-apt-get install -y mupdf mpv sxiv unp
+apt-get install -y mupdf mpv sxiv unp tree
 rm -rf /opt/noice
-git clone git://git.2f30.org/noice.git /opt/noice
+git clone --branch v0.8 git://git.2f30.org/noice.git /opt/noice
 cp config.def.h /opt/noice/
 cd /opt/noice
 cp config.def.h config.h
-#patch < config.patch
 make
 ln -rsf ./noice /usr/bin/
 echo "h quit" |lesskey -

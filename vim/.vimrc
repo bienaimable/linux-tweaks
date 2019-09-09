@@ -47,7 +47,7 @@ set softtabstop=4
 set autoindent
 
 if has('gui_running')
-  set guifont=Inconsolata\ Medium\ 20
+  set guifont=Inconsolata\ Medium\ 14
 endif
 
 set hlsearch

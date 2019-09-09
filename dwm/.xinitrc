@@ -1,7 +1,7 @@
 #!/bin/sh
-xrandr --newmode "2560x1600_60.00" 348.50  2560 2760 3032 3504  1600 1603 1609 1658 -hsync +vsync
-xrandr --addmode Virtual1 2560x1600_60.00
-xrandr --output Virtual1 --mode 2560x1600_60.00
+#xrandr --newmode "2560x1600_60.00" 348.50  2560 2760 3032 3504  1600 1603 1609 1658 -hsync +vsync
+#xrandr --addmode Virtual1 2560x1600_60.00
+#xrandr --output Virtual1 --mode 2560x1600_60.00
 #SECONDS=0
 #while true; do
 #    BATT=$(acpi -b | sed 's/Battery 0: //' | sed 's/,[^,]*$//')
@@ -23,4 +23,5 @@ xrandr --output Virtual1 --mode 2560x1600_60.00
 feh --bg-fill ~/wallpaper.jpg
 setxkbmap -option caps:escape
 export _JAVA_AWT_WM_NONREPARENTING=1 # To fix Pycharm and Android Studio blank screen in DWM
-exec /usr/local/bin/dwm 2> ~/.dwm.log
+#exec /usr/local/bin/dwm 2> ~/.dwm.log
+exec /usr/local/bin/dwm

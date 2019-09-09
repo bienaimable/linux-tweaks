@@ -54,13 +54,13 @@ def update_git_reminder():
             try:
                 status = sh.git.status(_cwd=workdir)
             except sh.ErrorReturnCode:
-                git_reminder = "[{} not saved]".format(workdir)
+                git_reminder = "[{} not saved]".format(subdir_0)
                 break
             if "Changes not staged" in status \
             or "Changes to be committed" in status \
             or "Untracked files" in status \
             or "Your branch is ahead" in status:
-                git_reminder = "[{} not saved]".format(workdir)
+                git_reminder = "[{} not saved]".format(subdir_0)
                 break
     s.enter(30, 1, update_git_reminder)
     

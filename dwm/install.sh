@@ -4,6 +4,7 @@ sleep 1
 if [[ $EUID -ne 0 ]]; then
    echo "Setting up .xinitrc for regular user" 
    sleep 1
+   chmod a+x .xinitrc
    ln -rsf .xinitrc ~/.xinitrc
    echo "Setting up wallpaper" 
    sleep 1
@@ -33,7 +34,7 @@ echo "Installing dwm..."
 sleep 1
 FOLDER=/tmp/dwm_src
 rm -rf $FOLDER
-git clone https://git.suckless.org/dwm $FOLDER
+git clone --branch 6.2 https://git.suckless.org/dwm $FOLDER
 cp config.h $FOLDER
 cd $FOLDER
 make clean install

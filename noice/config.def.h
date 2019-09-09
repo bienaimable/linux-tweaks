@@ -32,12 +32,7 @@ struct cpair pairs[] = {
 };
 
 struct assoc assocs[] = {
-	//{ .regex = "\\.(avi|mp4|mkv|mp3|ogg|flac|mov)$", .file = "mpv", .argv = { "mpv", "{}", NULL } },
-	//{ .regex = "\\.(png|jpg|gif)$", .file = "sxiv", .argv = { "sxiv", "{}", NULL} },
-	//{ .regex = "\\.(html|svg)$", .file = "firefox", .argv = { "firefox", "{}", NULL } },
-	//{ .regex = "\\.pdf$", .file = "mupdf", .argv = { "mupdf", "{}", NULL} },
-	//{ .regex = "\\.sh$", .file = "sh", .argv = { "sh", "{}", NULL} },
-	{ .regex = ".", .file = "less", .argv = { "less", "{}", NULL } },
+	{ ".", "less" },
 };
 
 struct key bindings[] = {
@@ -92,13 +87,10 @@ struct key bindings[] = {
 	{ CONTROL('L'),   SEL_REDRAW },
 	/* Run command */
 	{ 'z',            SEL_RUN, "top" },
-	//{ '!',            SEL_RUN, "sh", "SHELL" },
  	{ '!',            SEL_RUN, "st_background" },
 	/* Run command with argument */
-	//{ 'e',            SEL_RUNARG, "vi", "EDITOR" },
  	{ 'e',            SEL_RUNARG, "gvim", "EDITOR" },
  	{ 'r',            SEL_RUNARG, "gvimremote", "EDITOR" },
-	//{ 'p',            SEL_RUNARG, "less", "PAGER" },
  	{ 'o',            SEL_RUNARG, "mimeopenbg" },
  	{ 'p',            SEL_RUNARG, "treeless" },
 };
