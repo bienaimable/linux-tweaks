@@ -11,10 +11,12 @@ import yaml
 #from ruamel import yaml
 from pathlib import Path
 
+from prefixes import prefixes
+
 
 class Dictionary():
     def __init__(self, filepath, bookmarks, home_folder='~'):
-        self.filepath = filepath 
+        self.filepath = filepath
         self.home_folder = home_folder
         self.dictionary = collections.OrderedDict()
         self.bookmarks = bookmarks
@@ -44,6 +46,7 @@ class Dictionary():
         self.update_bookmarks()
         self.update_commands()
         self.update_folders()
+        self.update_templates()
         self.save()
 
     def update_bookmarks(self):
@@ -62,6 +65,29 @@ class Dictionary():
         for command in commands:
             key = '\\s ' + command
             self.dictionary[key] = [[command]]
+
+    def update_templates(self):
+        # Prepare the list of templates
+        templates = {
+            'debug': "&amzn_debug_mode=1",
+            'token': "&testToken=7snvCunWohswq2jh",
+            'gdpr': "window.__cmp('getConsentData',null,function(data){prompt('Consent String : ',data.consentData)})",
+            'fetchbids': """apstag.fetchBids({ slots: [ { slotID: "div-gpt-123", sizes: [[300,250], [300,600]] }, { slotID: "div-gpt-234", sizes: [[160, 600]] }, { slotID: "videoSlot", mediaType: 'video' } ], timeout: 2e3 }, bids => console.log(bids)); """,
+            'googleconsole': "googletag.openConsole()",
+            'getconsent': """window.__cmp('getVendorConsents', null, function(result) { console.log(JSON.stringify(result, null, 2)); });""",
+            'ooo message': """==========
+Things to do when telling your co-workers about your pending PTO or time out of the office in Outlook:
+
+- Send a meeting request with the following to your-team:
+- Show As: FREE (so you don't block other people's calendar)
+- Reminder: NONE (so you don't make everyone's phone buzz at 11:45pm every night you are gone)
+- Request response: Uncheck all (so everyone doesn't have to click accept)
+- Check the “All day event” box (so it shows up as a banner instead of a set of giant all day meetings)
+- Copy and paste this message into the body to keep these reminders fresh in our collective memory! """,
+        }
+        for keyword, snippet in templates.items():
+            key = '\\t ' + keyword
+            self.dictionary[key] = [['xdotool', 'type', snippet]]
 
     #def update_folders(self):
     #    # Prepare the list of folders
@@ -101,58 +127,27 @@ class Dictionary():
         self.dictionary.move_to_end(key, last=False)
         self.save()
 
-class TOP():
-    def guess_id(name):
-        script_directory = os.path.dirname(os.path.realpath(__file__))
-        partners = json.load(open(os.path.join(script_directory, "partners.json")))
-        partners = { v: k for k, v in partners.items() }
-        if name in partners:
-            return partners[name]
-        else:
-            close_matches = difflib.get_close_matches(name, partners, 1)
-            if close_matches:
-                return partners[close_matches[0]]
-        return None
-
-
 @attr.s
 class Menu():
     web = sh.x_www_browser.bake("--new-window")
-    top_prefixes = {
-        '\\campman': "https://top.criteo.com/app/#/CampaignManager/partner/{partner_id}",
-        '\\banman': "https://top.criteo.com/app/#/DynamicBannersManager/partner/{partner_id}",
-        '\\trackman': "https://top.criteo.com/app/#/DynamicTsManager/partner/{partner_id}",
-        '\\partnerinfo': "https://top.criteo.com/app/#/PartnerEdit/partner/{partner_id}",
-        '\\taggen': "https://top.criteo.com/app/#/TagGenerator/partner/{partner_id}",
-        '\\extradata': "https://top.criteo.com/app/#/ExtraSegmentation/partner/{partner_id}",
-        '\\recoconfig': "https://top.criteo.com/app/#/RecoFilter/partner/{partner_id}",
-        '\\eventlogs': "https://top.criteo.com/app/#/EventLogs/partner/{partner_id}",
-        '\\catconf': "https://top.criteo.com/app/#/CatalogImport/partner/{partner_id}",
-        '\\catmon': "https://top.criteo.com/app/#/CatalogMonitoring/partner/{partner_id}",
-        '\\catov': "https://top.criteo.com/app/#/CatalogOverview/partner/{partner_id}",
-        '\\customhtml': "https://top.criteo.com/app/#/CampaignCustomHtml/partner/{partner_id}",
-        '\\abtest': "https://top.criteo.com/app/#/ABTests/partner/{partner_id}",
-        "\\jira": "https://jira.criteois.com/browse/WCA-326?jql=text%20~%20%22{query}%22%20ORDER%20BY%20updated%20DESC",
-        "\\tableau": [
-                "https://tableau.criteois.com/#/site/americas/views?search={query}", 
-                "https://tableau.criteois.com/#/site/global/views?search={query}",
-        ],
-        "\\confluence": "https://confluence.criteois.com/dosearchsite.action?queryString={query}",
-    }
+    prefixes = prefixes
     def launch(self, dictionary):
         keys = dictionary.keys()
         stdin = "\n".join(keys).encode('utf-8')
         output = sh.dmenu("-i", "-f", "-fn", "Inconsolata-14", _in=stdin).stdout
         text = output.decode('utf-8').strip('\n')
-        for prefix, url in self.top_prefixes.items():
+        for prefix, url in self.prefixes.items():
             if text.startswith(prefix):
-                name = text.replace(prefix+' ', '')
+                if len(text) <= len(prefix) + 1:
+                    name = sh.xclip('-o')
+                else:
+                    name = text.replace(prefix+' ', '')
                 if type(url) is list:
                     for u in url:
-                        u = u.format(partner_id=TOP.guess_id(name), query=name)
+                        u = u.format(query=name)
                         self.web(u)
                 else:
-                    url = url.format(partner_id=TOP.guess_id(name), query=name)
+                    url = url.format(query=name)
                     self.web(url)
                 break
         else:

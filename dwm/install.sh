@@ -2,7 +2,7 @@
 echo "This script must be run twice. Once as root and once as regular user" 
 sleep 1
 if [[ $EUID -ne 0 ]]; then
-   echo "Setting up .xinitrc for regular user" 
+
    sleep 1
    chmod a+x .xinitrc
    ln -rsf .xinitrc ~/.xinitrc
@@ -13,7 +13,7 @@ if [[ $EUID -ne 0 ]]; then
    mkdir -p ~/dev
    sleep 1
    echo "Linking Downloads to tmp" 
-   rm ~/Downloads
+   rm -rf ~/Downloads
    ln -rsf /tmp/ ~/Downloads
    sleep 1
    echo "Make sure to also run this script as root" 

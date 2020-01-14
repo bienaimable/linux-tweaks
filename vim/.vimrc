@@ -9,7 +9,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
 endif
 
 call plug#begin('~/.vim/plugged')
-Plug 'davidhalter/jedi-vim'
+"Plug 'davidhalter/jedi-vim'
 Plug 'airblade/vim-rooter'
 Plug 'airblade/vim-gitgutter'
 Plug 'vim-airline/vim-airline'
@@ -21,6 +21,8 @@ Plug 'nanotech/jellybeans.vim'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'goerz/jupytext.vim'
+Plug 'Chiel92/vim-autoformat'
 call plug#end()
 
 source $VIMRUNTIME/mswin.vim
@@ -58,6 +60,7 @@ nnoremap <space> za
 vnoremap <space> zf
 nnoremap <buffer> <F8> :cd /tmp<cr>:let foo =strftime('%T')<cr>:exec 'w! '.foo<cr>:exec '!chmod u+x '.foo<cr>:exec 'read !./'.foo<cr><cr>
 nnoremap <buffer> <F9> :cd /tmp<cr>:let foo =strftime('%T')<cr>:exec 'w! '.foo<cr>:exec '!chmod u+x '.foo<cr>:exec '!./'.foo<cr>
+nnoremap <buffer> <F7> :cd /tmp<cr>:let foo =strftime('%T')<cr>:exec 'w! '.foo<cr>:exec '!chmod u+x '.foo<cr>:exec '!./'.foo<cr>
 autocmd BufNewFile,BufRead *.ts   set syntax=javascript
 autocmd BufNewFile,BufRead nginx.conf   set syntax=javascript
 autocmd BufNewFile,BufRead *.conf set syntax=json
@@ -138,3 +141,7 @@ autocmd BufWinLeave * call clearmatches()
 
 nmap <C-B> :CtrlPBuffer<CR>
 set tags=tags;/
+
+let g:jupytext_fmt = 'py'
+
+command Ingvim execute 'silent' '! gvim /tmp/ingvim_tmp_file_%:t' | w /tmp/ingvim_tmp_file_%:t | q
