@@ -119,5 +119,17 @@ countdown() {
 beep() {
     paplay /usr/share/sounds/freedesktop/stereo/complete.oga
 }
+white() {
+    printf '\e[?5h'
+}
+black() {
+    printf '\e[?5l'
+}
+blink() {
+    printf '\e[?5h'
+    sleep 1
+    printf '\e[?5l'
+}
+
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
