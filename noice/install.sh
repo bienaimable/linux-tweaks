@@ -15,33 +15,73 @@ cp config.def.h config.h
 make
 ln -rsf ./noice /usr/bin/
 echo "h quit" |lesskey -
+
 #cat >/usr/bin/mimeopenask <<EOL
 ##!/bin/sh
 #mimeopen -a "\$1"
 #EOL
 #chmod a+x /usr/bin/mimeopenask
-cat >/usr/bin/mimeopendefault <<EOL
+
+cat >/usr/bin/mimeopenaskdefault <<EOL
 #!/bin/sh
-mimeopen "\$1"
+mimeopen -d "\$1"
 EOL
-chmod a+x /usr/bin/mimeopendefault
-cat >/usr/bin/mimeopenbg <<EOL
+chmod a+x /usr/bin/mimeopenaskdefault
+
+cat >/usr/bin/mimeopenaskdefaultbg <<EOL
 #!/bin/sh
-mimeopen "\$1" &
+nohup st mimeopenaskdefault "\$1" > /dev/null 2>&1 & disown
 EOL
-chmod a+x /usr/bin/mimeopenbg
+chmod a+x /usr/bin/mimeopenaskdefaultbg
+
 cat >/usr/bin/smartless <<EOL
 #!/bin/sh
 lesspipe "\$1" | less
 EOL
 chmod a+x /usr/bin/smartless
+
 cat >/usr/bin/treeless <<EOL
 #!/bin/sh
 tree "\$1" | less
 EOL
 chmod a+x /usr/bin/treeless
-cat >/usr/bin/gvimremote <<EOL
+
+cat >/usr/bin/mimeopenbg <<EOL
 #!/bin/sh
-gvim --servername MAIN --remote-silent "\$1"
+nohup mimeopen "\$1" > /dev/null 2>&1 & disown
 EOL
-chmod a+x /usr/bin/gvimremote
+chmod a+x /usr/bin/mimeopenbg
+
+cat >/usr/bin/treelessbg <<EOL
+#!/bin/sh
+nohup st treeless "\$1" > /dev/null 2>&1 & disown
+EOL
+chmod a+x /usr/bin/treelessbg
+
+cat >/usr/bin/vimbg <<EOL
+#!/bin/sh
+if [ -z "\$1" ]
+  then
+    nohup st vim > /dev/null 2>&1 & disown
+  else
+    nohup st vim "\$1" > /dev/null 2>&1 & disown
+fi
+EOL
+chmod a+x /usr/bin/vimbg
+
+cat >/usr/bin/vimrbg <<EOL
+#!/bin/sh
+if [ -z "\$1" ]
+  then
+    nohup st vim --servername MAIN > /dev/null 2>&1 & disown
+  else
+    nohup st vim --servername MAIN --remote-silent "\$1" > /dev/null 2>&1 & disown
+fi
+EOL
+chmod a+x /usr/bin/vimrbg
+
+cat >/usr/bin/stbg <<EOL
+#!/bin/sh
+nohup st > /dev/null 2>&1 & disown
+EOL
+chmod a+x /usr/bin/stbg

@@ -69,6 +69,7 @@ class Dictionary():
     def update_templates(self):
         # Prepare the list of templates
         templates = {
+            'gdpr2': "window.__tcfapi('getTCData', 2, (tcData, success) => { if(success) { prompt('TC Data:', tcData.tcString); console.log('TC Data:', tcData) } else { prompt('Error:', tcData.tcString); console.log('Error:', tcData) } });",
             'debug': "&amzn_debug_mode=1",
             'token': "&testToken=7snvCunWohswq2jh",
             'gdpr': "window.__cmp('getConsentData',null,function(data){prompt('Consent String : ',data.consentData)})",
@@ -76,14 +77,15 @@ class Dictionary():
             'googleconsole': "googletag.openConsole()",
             'getconsent': """window.__cmp('getVendorConsents', null, function(result) { console.log(JSON.stringify(result, null, 2)); });""",
             'ooo message': """==========
-Things to do when telling your co-workers about your pending PTO or time out of the office in Outlook:
-
-- Send a meeting request with the following to your-team:
-- Show As: FREE (so you don't block other people's calendar)
-- Reminder: NONE (so you don't make everyone's phone buzz at 11:45pm every night you are gone)
-- Request response: Uncheck all (so everyone doesn't have to click accept)
-- Check the “All day event” box (so it shows up as a banner instead of a set of giant all day meetings)
-- Copy and paste this message into the body to keep these reminders fresh in our collective memory! """,
+When notifying your coworkers of your absence:
+- Add both your first name (or full name if confusion is possible) and the type of event as the title of the invite
+- Add only relevant teams and people as attendees
+- Check your End date (it is inclusive in Outlook)
+- Set Duration: All day so the invite shows up as a header in the calendar
+- Set Reminder: None
+- Set Show As: Free to avoid blocking your colleague's calendar
+- Uncheck Request responses
+- Paste this message in the body of your invite for others to use""",
         }
         for keyword, snippet in templates.items():
             key = '\\t ' + keyword

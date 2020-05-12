@@ -63,7 +63,20 @@ def update_git_reminder():
                 git_reminder = "[{} not saved]".format(subdir_0)
                 break
     s.enter(30, 1, update_git_reminder)
-    
+
+def update_ntp_time():
+    """
+    This requires adding the following line at the bottom of the sudoers file
+    by using the 'sudo visudo' command:
+    yourusername ALL=(root) NOPASSWD: /usr/sbin/ntpdate
+    """
+    try:
+        sh.sudo.ntpdate("-u", "1.ro.pool.ntp.org")
+    except:
+        pass
+    s.enter(60, 1, update_ntp_time)
+
+
 def loop():
     render()
     s.enter(2, 1, loop)
@@ -74,5 +87,6 @@ if __name__ == '__main__':
     update_battery()
     update_datetime()
     update_git_reminder()
+    update_ntp_time()
     loop()
     s.run()

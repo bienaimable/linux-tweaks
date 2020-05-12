@@ -87,10 +87,11 @@ struct key bindings[] = {
 	{ CONTROL('L'),   SEL_REDRAW },
 	/* Run command */
 	{ 'z',            SEL_RUN, "top" },
- 	{ '!',            SEL_RUN, "st_background" },
+ 	{ '!',            SEL_RUN, "stbg" },
 	/* Run command with argument */
- 	{ 'e',            SEL_RUNARG, "gvim", "EDITOR" },
- 	{ 'r',            SEL_RUNARG, "gvimremote", "EDITOR" },
+ 	{ 'e',            SEL_RUNARG, "vimbg", "EDITOR" },
+ 	{ 'r',            SEL_RUNARG, "vimrbg", "EDITOR" },
  	{ 'o',            SEL_RUNARG, "mimeopenbg" },
- 	{ 'p',            SEL_RUNARG, "treeless" },
+ 	{ 'a',            SEL_RUNARG, "mimeopenaskdefaultbg" },
+ 	{ 'p',            SEL_RUNARG, "treelessbg" },
 };
