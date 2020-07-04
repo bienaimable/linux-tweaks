@@ -1,0 +1,29 @@
+gdpr2: "window.__tcfapi('getTCData', 2, (tcData, success) => { if(success) { prompt('TC Data:', tcData.tcString); console.log('TC Data:', tcData) } else { prompt('Error:', tcData.tcString); console.log('Error:', tcData) } }); "
+debug: "&amzn_debug_mode=1"
+token: "&testToken=7snvCunWohswq2jh"
+gdpr: "window.__cmp('getConsentData',null,function(data){prompt('Consent String: ',data.consentData)}) "
+fetchbids: "apstag.fetchBids({ slots: [ { slotID: 'div-gpt-123', sizes: [[300,250], [300,600]] }, { slotID: 'div-gpt-234', sizes: [[160, 600]] }, { slotID: 'videoSlot', mediaType: 'video' } ], timeout: 2e3 }, bids => console.log(bids)); "
+googleconsole: "googletag.openConsole()"
+getconsent: "window.__cmp('getVendorConsents', null, function(result) { console.log(JSON.stringify(result, null, 2)); }); "
+ooo message: "==========
+
+    When notifying your coworkers of your absence:
+
+    - Add both your first name (or full name if confusion is possible) and the type of event as the title of the invite
+
+    - Add only relevant teams and people as attendees
+
+    - Set Duration: All day so the invite shows up as a header in the calendar
+
+    - Check your End date (it is inclusive in Outlook)
+
+    - Set Reminder: None
+
+    - Set Show As: Free to avoid blocking your colleague's calendar
+
+    - Uncheck Request responses
+
+    - Paste this message in the body of your invite for others to use"
+python shebang: "#!/usr/bin/python3
+
+"

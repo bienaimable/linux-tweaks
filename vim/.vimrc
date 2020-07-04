@@ -166,8 +166,8 @@ vnoremap <space> zf
 " Shortcuts to execute the buffer as a script, based on the hashbang in the
 " file. Print the result in Vim's console or directly in the buffer
 "
-nnoremap <buffer> <F8> :cd /tmp<cr>:let foo =strftime('%T')<cr>:exec 'w! '.foo<cr>:exec '!chmod u+x '.foo<cr>:exec 'read !./'.foo<cr><cr>
-nnoremap <buffer> <F9> :cd /tmp<cr>:let foo =strftime('%T')<cr>:exec 'w! '.foo<cr>:exec '!chmod u+x '.foo<cr>:exec '!./'.foo<cr>
+nnoremap <buffer> <F8> :cd /tmp<cr>:let foo ='/tmp/'.strftime('%T')<cr>:exec 'w! '.foo<cr>:exec '!chmod u+x '.foo<cr>:exec 'read !'.foo<cr><cr>
+nnoremap <buffer> <F9> :cd /tmp<cr>:let foo ='/tmp/'.strftime('%T')<cr>:exec 'w! '.foo<cr>:exec '!chmod u+x '.foo<cr>:exec '!'.foo<cr>
 
 "
 " Fix syntax highlighting for unrecognized file extensions

@@ -79,9 +79,3 @@ if [ -z "\$1" ]
 fi
 EOL
 chmod a+x /usr/bin/vimrbg
-
-cat >/usr/bin/stbg <<EOL
-#!/bin/sh
-nohup st > /dev/null 2>&1 & disown
-EOL
-chmod a+x /usr/bin/stbg

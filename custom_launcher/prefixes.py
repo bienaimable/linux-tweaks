@@ -1,6 +1,6 @@
 prefixes = {
         '\\code': "https://code.amazon.com/search?term={query}",
-        '\\wiki': "https://w.amazon.com/index.php/Special:Search?search={query}",
+        '\\wiki': "https://w.amazon.com/bin/view/Main/Search?text={query}",
         '\\inside': "https://inside.amazon.com/SearchCenter/Pages/results.aspx?k={query}",
         '\\phonetool': "https://phonetool.amazon.com/search?query={query}&filter_type=All+fields",
         '\\source': "https://dtb-portal.amazon.com/admin/sources/{query}",

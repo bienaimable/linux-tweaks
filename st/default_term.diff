@@ -1,0 +1,11 @@
+--- config.def.h	2020-07-04 12:56:07.442005396 +0100
++++ config.def.h.2	2020-07-04 13:11:28.661896729 +0100
+@@ -16,7 +16,7 @@
+  * 4: value of shell in /etc/passwd
+  * 5: value of shell in config.h
+  */
+-static char *shell = "/bin/sh";
++static char *shell = "/usr/bin/fish";
+ char *utmp = NULL;
+ char *stty_args = "stty raw pass8 nl -echo -iexten -cstopb 38400";
+ 

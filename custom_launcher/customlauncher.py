@@ -52,9 +52,9 @@ class Dictionary():
     def update_bookmarks(self):
         # Prepare the list of bookmarks
         script_directory = os.path.dirname(os.path.realpath(__file__))
-        bookmarks = yaml.load(open(os.path.join(script_directory, self.bookmarks)))
+        bookmarks = yaml.safe_load(open(os.path.join(script_directory, self.bookmarks)))
         for name in bookmarks:
-            key = '\\b ' + name
+            key = '\\bookmark ' + name
             self.dictionary[key] = [["x-www-browser", "--new-window", bookmarks[name]]]
 
     def update_commands(self):
@@ -63,32 +63,15 @@ class Dictionary():
         output, errors = compgen.communicate()
         commands = output.decode('utf8').splitlines()
         for command in commands:
-            key = '\\s ' + command
+            key = '\\exec ' + command
             self.dictionary[key] = [[command]]
 
     def update_templates(self):
         # Prepare the list of templates
-        templates = {
-            'gdpr2': "window.__tcfapi('getTCData', 2, (tcData, success) => { if(success) { prompt('TC Data:', tcData.tcString); console.log('TC Data:', tcData) } else { prompt('Error:', tcData.tcString); console.log('Error:', tcData) } });",
-            'debug': "&amzn_debug_mode=1",
-            'token': "&testToken=7snvCunWohswq2jh",
-            'gdpr': "window.__cmp('getConsentData',null,function(data){prompt('Consent String : ',data.consentData)})",
-            'fetchbids': """apstag.fetchBids({ slots: [ { slotID: "div-gpt-123", sizes: [[300,250], [300,600]] }, { slotID: "div-gpt-234", sizes: [[160, 600]] }, { slotID: "videoSlot", mediaType: 'video' } ], timeout: 2e3 }, bids => console.log(bids)); """,
-            'googleconsole': "googletag.openConsole()",
-            'getconsent': """window.__cmp('getVendorConsents', null, function(result) { console.log(JSON.stringify(result, null, 2)); });""",
-            'ooo message': """==========
-When notifying your coworkers of your absence:
-- Add both your first name (or full name if confusion is possible) and the type of event as the title of the invite
-- Add only relevant teams and people as attendees
-- Check your End date (it is inclusive in Outlook)
-- Set Duration: All day so the invite shows up as a header in the calendar
-- Set Reminder: None
-- Set Show As: Free to avoid blocking your colleague's calendar
-- Uncheck Request responses
-- Paste this message in the body of your invite for others to use""",
-        }
+        script_directory = os.path.dirname(os.path.realpath(__file__))
+        templates = yaml.safe_load(open(os.path.join(script_directory, 'templates.yml')))
         for keyword, snippet in templates.items():
-            key = '\\t ' + keyword
+            key = '\\template ' + keyword
             self.dictionary[key] = [['xdotool', 'type', snippet]]
 
     #def update_folders(self):
@@ -99,18 +82,18 @@ When notifying your coworkers of your absence:
     #        self.dictionary[key] = [["xfe", folder]]
     def update_folders(self):
         # Prepare the list of folders
-        key = '\\f ' + self.home_folder
+        key = '\\folder ' + self.home_folder
         self.dictionary[key] = [["st", "noice", self.home_folder]]
         walker_0 = os.walk(self.home_folder)
         (current_dir_0, subdirs_0, files_0) = next(walker_0)
         for subdir_0 in subdirs_0:
-            key = '\\f ' + subdir_0
+            key = '\\folder ' + subdir_0
             self.dictionary[key] = [["st", "noice", os.path.join(current_dir_0, subdir_0)]]
             walker_1 = os.walk(os.path.join(current_dir_0, subdir_0))
             try:
                 (current_dir_1, subdirs_1, files_1) = next(walker_1)
                 for subdir_1 in subdirs_1:
-                    key = '\\f ' + subdir_1
+                    key = '\\folder ' + subdir_1
                     self.dictionary[key] = [["st", "noice", os.path.join(current_dir_1, subdir_1)]]
             except StopIteration:
                 pass
