@@ -55,7 +55,7 @@ class Dictionary():
         bookmarks = yaml.safe_load(open(os.path.join(script_directory, self.bookmarks)))
         for name in bookmarks:
             key = '\\bookmark ' + name
-            self.dictionary[key] = [["x-www-browser", "--new-window", bookmarks[name]]]
+            self.dictionary[key] = [["x-www-browser", "--app="+bookmarks[name]]]
 
     def update_commands(self):
         # Prepare the list of commands
@@ -98,23 +98,21 @@ class Dictionary():
             except StopIteration:
                 pass
 
-    #def update_multiscreen(self):
-    #    key = '\\m multiscreen'
-    #    command = [
-    #        ["/home/user/criteo/dev/dwm_tools/setdate.sh"],
-    #        ["xrandr", "--output", "VGA-0", "--auto", "--left-of", "VGA-1"],
-    #        ["xrandr", "--output", "VGA-2", "--auto", "--right-of", "VGA-1"],
-    #        ["feh", "--bg-fill", "/home/user/criteo/images/wallpaper.jpg"],
-    #    ]
-    #    self.dictionary[key] = command
-
     def reorder(self, key):
         self.dictionary.move_to_end(key, last=False)
         self.save()
 
 @attr.s
 class Menu():
-    web = sh.x_www_browser.bake("--new-window")
+    def web(self, text):
+        sh.x_www_browser.bake("--new-window", text, _bg=True)
+    def web_app_mode(self, text):
+        sh.x_www_browser(app=text, _bg=True)
+    def web_app_mode_mitm(self, text):
+        sh.x_www_browser(proxy_server="localhost:8080",
+            user_data_dir=str(Path.home())+"/.config/google-chrome-mitm",
+            app=text,
+            _bg=True)
     prefixes = prefixes
     def launch(self, dictionary):
         keys = dictionary.keys()
@@ -130,23 +128,28 @@ class Menu():
                 if type(url) is list:
                     for u in url:
                         u = u.format(query=name)
-                        self.web(u)
+                        self.web_app_mode(u)
                 else:
                     url = url.format(query=name)
-                    self.web(url)
+                    self.web_app_mode(url)
                 break
         else:
             if text.startswith("\\update"):
                 dictionary.update()
-            elif text.startswith('\\') and not text.startswith('\\g'):
+            elif text.startswith('\\') and not text.startswith('\\g') and not text.startswith('\\m'):
                 commands = dictionary.commands(text)
                 for command in commands:
                     dictionary.reorder(text)
                     subprocess.call(command)
-            elif '\\g' not in text and (text.startswith("www") or text.startswith("http") or text.endswith('.com')):
-                self.web(text)
+            elif text.startswith("\\m http"):
+                self.web_app_mode_mitm(text.replace('\\m ', ''))
+            elif text.startswith('\\m'):
+                self.web_app_mode_mitm("https://www.google.com/search?q="+text.replace('\\m ', ''))
+            elif '\\g' not in text and text.startswith("http"):
+                self.web_app_mode(text)
             elif text:
-                self.web("https://www.google.com/search?q="+text.replace('\\g ', ''))
+                self.web_app_mode("https://www.google.com/search?q="+text.replace('\\g ', ''))
+
 
 def main():
     home_folder = str(Path.home())

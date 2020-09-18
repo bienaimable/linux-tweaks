@@ -22,6 +22,7 @@
 ~/linux-tweaks/dwm/header.py &
 feh --bg-fill ~/wallpaper.jpg
 setxkbmap -option caps:escape
+xbindkeys
 export _JAVA_AWT_WM_NONREPARENTING=1 # To fix Pycharm and Android Studio blank screen in DWM
 #exec /usr/local/bin/dwm 2> ~/.dwm.log
 exec /usr/local/bin/dwm

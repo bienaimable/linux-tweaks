@@ -97,6 +97,10 @@ Plug 'dense-analysis/ale'
 " Defaults that make sense
 "
 Plug 'tpope/vim-sensible'
+"
+" A wiki inside Vim
+"
+Plug 'vimwiki/vimwiki'
 call plug#end()
 
 "
@@ -252,6 +256,13 @@ au BufNewFile,BufRead *.css set
     \ tabstop=2
     \ softtabstop=2
     \ shiftwidth=2
+
+"
+" Autoformat vimwiki files
+"
+let g:vimwiki_folding = 'list'
+"au BufNewFile,BufRead *.wiki set
+"    \ foldmethod=indent
 
 "
 " Highlight trailing whitespace as a reminder to keep files clean

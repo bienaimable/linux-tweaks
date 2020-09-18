@@ -22,11 +22,12 @@ if [[ $EUID -ne 0 ]]; then
 fi
 echo "Installing dependencies..." 
 sleep 1
-apt-get install -y dpkg-dev libx11-dev libxinerama-dev feh libfreetype6-dev libxft2-dev xinit acpi x11-xkb-utils suckless-tools
+apt-get install -y dpkg-dev libx11-dev libxinerama-dev feh libfreetype6-dev libxft2-dev xinit acpi x11-xkb-utils suckless-tools xbindkeys
 echo "Linking helper scripts (brightness, printscreen...)"
 ln -rsf brightness.sh /usr/bin/brightness
 ln -rsf printscreen.sh /usr/bin/printscreen
 ln -rsf sleep_and_lock.sh /usr/bin/sleep_and_lock
+ln -rsf ../mouse/gridclick.py /usr/bin/gridclick
 chmod a+x /usr/bin/sleep_and_lock
 chmod a+x brightness.sh
 chmod a+x /usr/bin/brightness

@@ -1,0 +1,101 @@
+# For the benefit of emacs users: -*- shell-script -*-
+###########################
+# xbindkeys configuration #
+###########################
+#
+# Version: 1.8.6
+#
+# If you edit this file, do not forget to uncomment any lines
+# that you change.
+# The pound(#) symbol may be used anywhere for comments.
+#
+# To specify a key, you can use 'xbindkeys --key' or
+# 'xbindkeys --multikey' and put one of the two lines in this file.
+#
+# The format of a command line is:
+#    "command to start"
+#       associated key
+#
+#
+# A list of keys is in /usr/include/X11/keysym.h and in
+# /usr/include/X11/keysymdef.h
+# The XK_ is not needed.
+#
+# List of modifier:
+#   Release, Control, Shift, Mod1 (Alt), Mod2 (NumLock),
+#   Mod3 (CapsLock), Mod4, Mod5 (Scroll).
+#
+
+# The release modifier is not a standard X modifier, but you can
+# use it if you want to catch release events instead of press events
+
+# By defaults, xbindkeys does not pay attention with the modifiers
+# NumLock, CapsLock and ScrollLock.
+# Uncomment the lines above if you want to pay attention to them.
+
+#keystate_numlock = enable
+#keystate_capslock = enable
+#keystate_scrolllock= enable
+
+# Examples of commands:
+
+"xbindkeys_show"
+  control+shift + q
+
+"setxkbmap ca multix"
+  control+shift+f
+
+"setxkbmap us"
+  control+shift+u
+
+"vimbg"
+  alt+v
+
+##"xset r off; xdotool keyup --window 0 space key --clearmodifiers --window 0 KP_Enter; xset r on"
+#"xset r off; xdotool keyup --window 0 space key --clearmodifiers --window 0 BackSpace; xset r on"
+#    m:0x40 + c:65
+#    Mod4 + space
+#
+#"xset r off; xdotool keyup --window 0 n key --clearmodifiers --window 0 Left; xset r on"
+#    m:0x40 + c:44
+#    Mod4 + n
+#
+#"xset r off; xdotool keyup --window 0 i key --clearmodifiers --window 0 Right; xset r on"
+#    Mod4 + i
+#
+#"xset r off; xdotool keyup --window 0 o key --clearmodifiers --window 0 Up; xset r on"
+#    Mod4 + o
+#
+#"xset r off; xdotool keyup --window 0 e key --clearmodifiers --window 0 Down; xset r on"
+#    Mod4 + e
+#
+#"xset r off; xdotool keyup --window 0 q keydown shift type Q; xset r on"
+#    Mod4 + q
+
+
+# set directly keycode (here control + f with my keyboard)
+#"xterm"
+#  c:41 + m:0x4
+
+# specify a mouse button
+#"xterm"
+#  control + b:2
+
+#"xterm -geom 50x20+20+20"
+#   Shift+Mod2+alt + s
+#
+## set directly keycode (here control+alt+mod2 + f with my keyboard)
+#"xterm"
+#  alt + c:0x29 + m:4 + mod2
+#
+## Control+Shift+a  release event starts rxvt
+#"rxvt"
+#  release+control+shift + a
+#
+## Control + mouse button 2 release event starts rxvt
+#"rxvt"
+#  Control + b:2 + Release
+
+##################################
+# End of xbindkeys configuration #
+##################################
