@@ -1,5 +1,6 @@
 #!/bin/bash
 if [[ $EUID -ne 0 ]]; then
+   mkdir -p ~/.config/fish/
    rm -rf ~/.config/fish/functions
    ln -sf $PWD/fish/functions ~/.config/fish/
    #echo "Please enter password to choose your shell (/bin/zsh is recommended)"

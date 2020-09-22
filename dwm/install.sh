@@ -22,6 +22,9 @@ if [[ $EUID -ne 0 ]]; then
 fi
 echo "Installing dependencies..." 
 sleep 1
+apt-get update
+apt-get install -y python3-pip chromium-browser suckless-tools xdotool xclip
+pip3 install sh attrs pyyaml
 apt-get install -y dpkg-dev libx11-dev libxinerama-dev feh libfreetype6-dev libxft2-dev xinit acpi x11-xkb-utils suckless-tools xbindkeys
 echo "Linking helper scripts (brightness, printscreen...)"
 ln -rsf brightness.sh /usr/bin/brightness
