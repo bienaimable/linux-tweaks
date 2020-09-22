@@ -43,7 +43,7 @@ def update_datetime():
 def update_git_reminder():
     global git_reminder
     git_reminder = ""
-    folders = ['~/dev', '~/linux-tweaks', '~/mybookmarks']
+    folders = ['~/dev', '~/linux-tweaks', '~/mybookmarks', '~/vimwiki']
     for folder in folders:
         folder = os.path.expanduser(folder)
         walker_0 = os.walk(folder)
