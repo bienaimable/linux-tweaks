@@ -1,4 +1,4 @@
-gdpr2: "window.__tcfapi('getTCData', 2, (tcData, success) => { if(success) { console.log('TC Data:', tcData); prompt('TC Data:', tcData.tcString) } else { console.log('Error:', tcData) }; prompt('Error:', tcData.tcString) }); "
+gdpr2: "window.__tcfapi('getTCData', 2, (tcData, success) => { if(success) { console.log('TC Data:', tcData); prompt('TC Data:', tcData.tcString) } else { console.log('Error:', tcData); prompt('Error:', tcData.tcString) }}); "
 debug: "&amzn_debug_mode=1"
 token: "&testToken=7snvCunWohswq2jh"
 gdpr: "window.__cmp('getConsentData',null,function(data){prompt('Consent String: ',data.consentData)}) "

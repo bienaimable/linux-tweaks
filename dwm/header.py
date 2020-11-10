@@ -3,6 +3,7 @@ import sh
 import time
 import sched
 import os
+from datetime import datetime
 
 s = sched.scheduler(time.time, time.sleep)
 
@@ -10,7 +11,7 @@ def render():
     try:
         last_checked = round((time.time() - connection_checked +1)/5)
         dots = "."*(last_checked)+" "*(3-last_checked)
-        header = f"{git_reminder} [{connection}{dots}] [{battery}] {datetime}"
+        header = f"{git_reminder} [{connection}{dots}] [{battery}] {timedate}"
         sh.xsetroot('-name', header)
     except NameError:
         pass
@@ -36,8 +37,9 @@ def update_battery():
     s.enter(5, 1, update_battery)
 
 def update_datetime():
-    global datetime
-    datetime = time.strftime("[%A, %Y-%m-%d] [%H:%M] ")
+    global timedate
+    now = datetime.now()
+    timedate = now.strftime("[%A, %Y-%m-%d] [%H:%M] ")
     s.enter(2, 1, update_datetime)
 
 def update_git_reminder():

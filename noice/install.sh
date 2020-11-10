@@ -14,7 +14,8 @@ cd /opt/noice
 cp config.def.h config.h
 make
 ln -rsf ./noice /usr/bin/
-echo "h quit" |lesskey -
+# \kl stands for left arrow. Used here to quit less
+echo "\kl quit" |lesskey -
 
 #cat >/usr/bin/mimeopenask <<EOL
 ##!/bin/sh
