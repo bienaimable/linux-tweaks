@@ -51,6 +51,56 @@
 "vimbg"
   alt+v
 
+#"fish -c \"xdotool mousemove (math '1919*(1/4-1/8)') (math '1079/2')\""
+
+"xdotool mousemove 240 539"
+  control+shift+alt+n
+
+"xdotool mousemove 720 539"
+  control+shift+alt+e
+
+"xdotool mousemove 1199 539"
+  control+shift+alt+o
+
+"xdotool mousemove 1679 539"
+  control+shift+alt+i
+
+"xdotool mousemove 240 180"
+  control+shift+alt+f
+
+"xdotool mousemove 720 180"
+  control+shift+alt+u
+
+"xdotool mousemove 1199 180"
+  control+shift+alt+p
+
+"xdotool mousemove 1679 180"
+  control+shift+alt+apostrophe
+
+"xdotool mousemove 240 899"
+  control+shift+alt+l
+
+"xdotool mousemove 720 899"
+  control+shift+alt+comma
+
+"xdotool mousemove 1199 899"
+  control+shift+alt+period
+
+"xdotool mousemove 1679 899"
+  control+shift+alt+slash
+
+#"xdotool mousemove_relative -- -500 0"
+#  control+shift+alt+n
+#
+#"xdotool mousemove_relative -- 0 300"
+#  control+shift+alt+e
+#
+#"xdotool mousemove_relative -- 0 -300"
+#  control+shift+alt+o
+#
+#"xdotool mousemove_relative -- 500 0"
+#  control+shift+alt+i
+
 ##"xset r off; xdotool keyup --window 0 space key --clearmodifiers --window 0 KP_Enter; xset r on"
 #"xset r off; xdotool keyup --window 0 space key --clearmodifiers --window 0 BackSpace; xset r on"
 #    m:0x40 + c:65
