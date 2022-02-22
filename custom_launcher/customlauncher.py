@@ -43,9 +43,9 @@ class Dictionary():
 
     def update(self):
         self.dictionary = collections.OrderedDict()
-        self.update_bookmarks()
+        # self.update_bookmarks()
         self.update_commands()
-        self.update_folders()
+        # self.update_folders()
         self.update_templates()
         self.save()
 
@@ -109,9 +109,11 @@ class Menu():
     def web_app_mode(self, text):
         sh.x_www_browser(app=text, _bg=True)
     def web_app_mode_mitm(self, text):
-        sh.x_www_browser(proxy_server="localhost:8080",
+        sh.x_www_browser(
+            "--auto-open-devtools-for-tabs",
+            text,
+            proxy_server="localhost:8080",
             user_data_dir=str(Path.home())+"/.config/google-chrome-mitm",
-            app=text,
             _bg=True)
     prefixes = prefixes
     def launch(self, dictionary):
@@ -147,8 +149,8 @@ class Menu():
                 self.web_app_mode_mitm("https://www.google.com/search?q="+text.replace('\\m ', ''))
             elif '\\g' not in text and text.startswith("http"):
                 self.web_app_mode(text)
-            elif text:
-                self.web_app_mode("https://www.google.com/search?q="+text.replace('\\g ', ''))
+            #elif text:
+            #    self.web_app_mode("https://www.google.com/search?q="+text.replace('\\g ', ''))
 
 
 def main():

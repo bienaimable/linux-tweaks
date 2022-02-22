@@ -5,7 +5,7 @@ prefixes = {
         '\\phonetool': "https://phonetool.amazon.com/search?query={query}&filter_type=All+fields",
         '\\source': "https://dtb-portal.amazon.com/admin/sources/{query}",
         '\\publisher': "https://dtb-portal.amazon.com/admin/publishers/{query}",
-        '\\search': "https://dtb-portal.amazon.com/admin/search.json?q={query}",
+        '\\search': "https://dtb-portal.amazon.com/admin/search.json?q%5Bterm%5D={query}&q%5B_type%5D=query",
         '\\pricepoint': "https://dtb-portal.amazon.com/admin/apse/web/publishers/{query}/price_point_configs",
         '\\oncall': "https://issues.amazon.com/issues/wDTBOncall-{query}",
         '\\incoming': "https://issues.amazon.com/issues/APSTSE-{query}",

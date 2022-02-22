@@ -45,11 +45,13 @@ static const Layout layouts[] = {
 	{ "[M]",      monocle },
 };
 
-/* key definitions for Alt/Option key*/
+/* key definitions for Alt/Option key
 #define MODKEY Mod1Mask
-/* key definitions for Windows/Super/Command key
-#define MODKEY Mod4Mask
 */
+/* key definitions for Windows/Super/Command key
+*/
+#define MODKEY Mod4Mask
+
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -62,7 +64,8 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-static const char *termcmd[]  = { "stbg", NULL };
+/* static const char *termcmd[]  = { "stbg", NULL }; */
+static const char *termcmd[]  = { "kitty", NULL };
 static const char *customlauncher[]  = { "customlauncher", NULL };
 static const char *slock[]  = { "slock", NULL };
 static const char *brightnessup[]  = { "brightness", "up", NULL };
@@ -86,8 +89,6 @@ static Key keys[] = {
 	{ False,      XF86XK_Search,               spawn,          {.v = customlauncher } },
 	{ MODKEY,                       XK_g,      spawn,          {.v = printscreen } },
 	{ MODKEY,                       XK_q,      spawn,          {.v = gridclick } },
-	{ MODKEY,                       XK_o,      spawn,          {.v = keyboard_fr } },
-	{ MODKEY,                       XK_u,      spawn,          {.v = keyboard_us } },
 	{ MODKEY,                       XK_z,      spawn,          {.v = sleep_and_lock } },
 	{ MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
 	{ MODKEY,                       XK_s,      spawn,          {.v = customlauncher } },

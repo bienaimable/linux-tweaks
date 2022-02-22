@@ -24,6 +24,6 @@ ooo message: "==========
     - Uncheck Request responses
 
     - Paste this message in the body of your invite for others to use"
-python shebang: "#!/usr/bin/python3
+python shebang: "#!/usr/bin/python3.9
 
 "

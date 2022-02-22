@@ -3,12 +3,6 @@ echo "This script must be run twice. Once as root and once as regular user"
 sleep 1
 if [[ $EUID -ne 0 ]]; then
 
-   sleep 1
-   chmod a+x .xinitrc
-   ln -rsf .xinitrc ~/.xinitrc
-   echo "Setting up wallpaper" 
-   sleep 1
-   ln -rsf wallpaper.jpg ~/wallpaper.jpg
    echo "Creating dev folder" 
    mkdir -p ~/dev
    sleep 1
@@ -29,19 +23,12 @@ apt-get install -y dpkg-dev libx11-dev libxinerama-dev feh libfreetype6-dev libx
 echo "Linking helper scripts (brightness, printscreen...)"
 ln -rsf brightness.sh /usr/bin/brightness
 ln -rsf printscreen.sh /usr/bin/printscreen
+ln -rsf screencast_window.sh /usr/bin/screencast_window
 ln -rsf sleep_and_lock.sh /usr/bin/sleep_and_lock
 ln -rsf ../mouse/gridclick.py /usr/bin/gridclick
 chmod a+x /usr/bin/sleep_and_lock
 chmod a+x brightness.sh
 chmod a+x /usr/bin/brightness
-echo "Installing dwm..." 
-sleep 1
-FOLDER=/tmp/dwm_src
-rm -rf $FOLDER
-git clone --branch 6.2 https://git.suckless.org/dwm $FOLDER
-cp config.h $FOLDER
-cd $FOLDER
-make clean install
 echo "Choose default apps" 
 sleep 1
 update-alternatives --config x-www-browser
